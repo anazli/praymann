@@ -2,19 +2,28 @@ import numpy as np
 
 
 class Vector3D:
-    def __init__(self, data):
+    def __init__(self, *args):
         """initializes a vector from a numpy 3D array"""
-        if not isinstance(data, np.ndarray):
-            raise TypeError(
-                "Numpy array should be provided for Vector3D initializiation"
-            )
-        if not len(data) == 3:
-            raise ValueError("Wrong dimension for Vector3D data")
-        self._data = data
-
-    def __init__(self, x, y, z):
-        """initializes a vector from 3 coordinates"""
-        self._data = np.array([x, y, z], dtype=np.float64)
+        if len(args) == 1:
+            if isinstance(args[0], np.ndarray) and args[0].shape == (3,):
+                self._data = args[0]
+            elif isinstance(args[0], list) and args[0].shape == (3,):
+                self._data = np.array(args[0])
+            else:
+                raise TypeError(
+                    "Numpy 3D array should be provided for Vector3D initializiation"
+                )
+        elif len(args) == 3:
+            if all(isinstance(val, (int, float)) for val in args):
+                self._data = np.array([args[0], args[1], args[2]], dtype=np.float64)
+            else:
+                raise TypeError(
+                    "Float variables (x,y,z) should be provided for Vector3D initializiation"
+                )
+        elif len(args) == 0:
+            self._data = np.array([0, 0, 0])
+        else:
+            raise TypeError("Unknown input type for Vector3D initializiation")
 
     @property
     def x(self):
@@ -76,3 +85,7 @@ class Vector3D:
     def length(self):
         """length of a 3D vector"""
         return np.linalg.norm(self._data)
+
+    def normalized(self):
+        """returns the normalized vector"""
+        return self._data / self.length()
