@@ -1,5 +1,8 @@
 import numpy as np
 
+from montyray.math_tools.vector3d import Vector3D
+from montyray.math_tools.point3d import Point3D
+
 
 class Vector4D:
     def __init__(self, *args):
@@ -7,6 +10,10 @@ class Vector4D:
         if len(args) == 1:
             if isinstance(args[0], (np.ndarray, list)) and len(args[0]) == 4:
                 self._data = np.array(args[0])
+            elif isinstance(args[0], Vector3D):
+                self._data = np.append(args[0].coordinates, 0.0)
+            elif isinstance(args[0], Point3D):
+                self._data = np.append(args[0].coordinates, 1.0)
             else:
                 raise TypeError(
                     "A 4D numpy array or python list should be provided for Vector4D initializiation"
