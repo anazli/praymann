@@ -64,19 +64,53 @@ class Vector3D:
             raise TypeError()
         self._data = np.array(data)
 
+    def __eq__(self, other):
+        return self._eq(other)
+
+    def __req__(self, other):
+        return self._eq(other)
+
+    def _eq(self, other):
+        if isinstance(other, Vector3D):
+            return np.array_equal(self._data, other._data)
+
     def __add__(self, other):
-        if not isinstance(other, (Vector3D)):
+        return self._add(other)
+
+    def __radd__(self, other):
+        return self._add(other)
+
+    def _add(self, other):
+        if not isinstance(other, (Vector3D, float, int)):
             raise TypeError()
+        if isinstance(other, (float, int)):
+            return Vector3D(self._data + other)
         return Vector3D(self._data + other._data)
 
     def __sub__(self, other):
-        if not isinstance(other, (Vector3D)):
+        return self._sub(other)
+
+    def __rsub__(self, other):
+        return self._sub(other)
+
+    def _sub(self, other):
+        if not isinstance(other, (Vector3D, float, int)):
             raise TypeError()
+        if isinstance(other, (float, int)):
+            return Vector3D(self._data - other)
         return Vector3D(self._data - other._data)
 
     def __mul__(self, other):
-        if not isinstance(other, (Vector3D)):
+        return self._mul(other)
+
+    def __rmul__(self, other):
+        return self._mul(other)
+
+    def _mul(self, other):
+        if not isinstance(other, (Vector3D, float, int)):
             raise TypeError()
+        if isinstance(other, (float, int)):
+            return Vector3D(self._data * other)
         return Vector3D(self._data * other._data)
 
     def __neg__(self):
