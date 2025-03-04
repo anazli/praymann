@@ -37,6 +37,17 @@ class TestVector3D(unittest.TestCase):
         self.assertAlmostEqual(-5.0, res.y)
         self.assertAlmostEqual(4.696, res.z)
 
+    def test_coordinate_modifiers(self):
+        v = Vector3D()
+        with self.assertRaises(TypeError):
+            v.coordinates = ["2", "3"]
+        with self.assertRaises(TypeError):
+            v.x = "1"
+        with self.assertRaises(TypeError):
+            v.y = "2"
+        with self.assertRaises(TypeError):
+            v.z = "3"
+
 
 if __name__ == "__main__":
     unittest.main()

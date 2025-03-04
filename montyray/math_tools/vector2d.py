@@ -5,13 +5,11 @@ class Vector2D:
     def __init__(self, *args):
         """initializes a vector from a numpy 3D array"""
         if len(args) == 1:
-            if isinstance(args[0], np.ndarray) and args[0].shape == (2,):
-                self._data = args[0]
-            elif isinstance(args[0], list) and args[0].shape == (2,):
+            if isinstance(args[0], (np.ndarray, list)) and len(args[0]) == 2:
                 self._data = np.array(args[0])
             else:
                 raise TypeError(
-                    "Numpy 2D array should be provided for Vector3D initializiation"
+                    "A 2D numpy array or python list should be provided for Vector3D initializiation"
                 )
         elif len(args) == 2:
             if all(isinstance(val, (int, float)) for val in args):
@@ -31,6 +29,8 @@ class Vector2D:
 
     @x.setter
     def x(self, val):
+        if not isinstance(val, (int, float)):
+            raise TypeError()
         self._data[0] = val
 
     @property
@@ -39,6 +39,8 @@ class Vector2D:
 
     @y.setter
     def y(self, val):
+        if not isinstance(val, (int, float)):
+            raise TypeError()
         self._data[1] = val
 
     @property
@@ -48,30 +50,32 @@ class Vector2D:
 
     @coordinates.setter
     def coordinates(self, data):
-        self._data = data.copy()
+        if not (isinstance(data, (np.ndarray, list)) and len(data) == 2):
+            raise TypeError()
+        self._data = np.array(data)
 
     def __add__(self, other):
-        """adds two 2D vectors"""
+        if not isinstance(other, (Vector2D)):
+            raise TypeError()
         return Vector2D(self._data + other._data)
 
     def __sub__(self, other):
-        """subtracts two 2D vectors"""
+        if not isinstance(other, (Vector2D)):
+            raise TypeError()
         return Vector2D(self._data - other._data)
 
     def __mul__(self, other):
-        """multiplies two 2D vectors"""
+        if not isinstance(other, (Vector2D)):
+            raise TypeError()
         return Vector2D(self._data * other._data)
 
     def __neg__(self):
-        """negetion of 2D vector"""
         return Vector2D(-self._data)
 
     def __abs__(self):
-        """absolute value of a 2D vector"""
         return Vector2D(np.abs(self._data))
 
     def __str__(self):
-        """string representation of a 2D vector"""
         return f"Vector2D({self.x}, {self.y})"
 
     def length(self):

@@ -35,6 +35,15 @@ class TestVector2D(unittest.TestCase):
         self.assertAlmostEqual(7.635, res.x)
         self.assertAlmostEqual(-10.794624, res.y)
 
+    def test_coordinate_modifiers(self):
+        v = Vector2D()
+        with self.assertRaises(TypeError):
+            v.coordinates = ["2", "3", "4"]
+        with self.assertRaises(TypeError):
+            v.x = "1"
+        with self.assertRaises(TypeError):
+            v.y = "2"
+
 
 if __name__ == "__main__":
     unittest.main()
