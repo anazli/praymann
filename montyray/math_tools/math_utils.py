@@ -20,10 +20,20 @@ def dot(elem1, elem2):
 
 def cross(elem1, elem2):
     """cross product of two math entities"""
-    if isinstance(
-        (elem1, elem2),
-        ((Vector2D, Vector2D), (Vector3D, Vector3D), (Vector4D, Vector4D)),
-    ):
-        return np.cross(elem1, elem2)
+    if isinstance(elem1, Vector2D) and isinstance(elem2, Vector2D):
+        new_data = np.cross(elem1.coordinates, elem2.coordinates)
+        ret = Vector2D()
+        ret.coordinates = new_data
+        return ret
+    elif isinstance(elem1, Vector3D) and isinstance(elem2, Vector3D):
+        new_data = np.cross(elem1.coordinates, elem2.coordinates)
+        ret = Vector3D()
+        ret.coordinates = new_data
+        return ret
+    elif isinstance(elem1, Vector4D) and isinstance(elem2, Vector4D):
+        new_data = np.cross(elem1.coordinates, elem2.coordinates)
+        ret = Vector4D()
+        ret.coordinates = new_data
+        return ret
     else:
         raise TypeError("Cannot calculate the cross product of the given elements!")
