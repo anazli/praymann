@@ -12,17 +12,14 @@ class TestVector3D(unittest.TestCase):
             v = Vector3D("[1, 2, 3]")
 
         with self.assertRaises(TypeError):
-            v = Vector3D(np.array([0, 1, 2, 3]))
-
-        with self.assertRaises(TypeError):
-            v = Vector3D("1", "2", "3")
+            v = Vector3D(np.array([0, 1, 2]))
 
     def test_length(self):
-        v = Vector3D(np.array([1, 2, -3]))
+        v = Vector3D(1, 2, -3)
         self.assertEqual(3.7416573867739413, v.length())
 
     def test_normalized(self):
-        v = Vector3D(np.array([-1, 2, 3]))
+        v = Vector3D(-1, 2, 3)
         vn = v.normalized()
         self.assertAlmostEqual(-0.26726124, vn[0])
         self.assertAlmostEqual(0.53452248, vn[1])

@@ -12,10 +12,7 @@ class TestPoint3D(unittest.TestCase):
             p = Point3D("[1, 2, 3]")
 
         with self.assertRaises(TypeError):
-            p = Point3D(np.array([0, 1, 2, 3]))
-
-        with self.assertRaises(TypeError):
-            p = Point3D("1", "2", "3")
+            p = Point3D(np.array([0, 1, 2]))
 
     def test_operators(self):
         a = Point3D(1, 2, 3)

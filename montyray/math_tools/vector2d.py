@@ -3,25 +3,15 @@ import numpy as np
 
 class Vector2D:
     def __init__(self, *args):
-        """initializes a vector from a numpy 3D array"""
-        if len(args) == 1:
-            if isinstance(args[0], (np.ndarray, list)) and len(args[0]) == 2:
-                self._data = np.array(args[0])
-            else:
-                raise TypeError(
-                    "A 2D numpy array or python list should be provided for Vector3D initializiation"
-                )
-        elif len(args) == 2:
-            if all(isinstance(val, (int, float)) for val in args):
+        if len(args) == 2:
+            if all(isinstance(val, (int, float, str)) for val in args):
                 self._data = np.array([args[0], args[1]], dtype=np.float64)
             else:
-                raise TypeError(
-                    "Float variables (x,y) should be provided for Vector2D initializiation"
-                )
+                raise TypeError()
         elif len(args) == 0:
             self._data = np.array([0, 0])
         else:
-            raise TypeError("Unknown input type for Vector2D initializiation")
+            raise TypeError()
 
     @property
     def x(self):
@@ -72,11 +62,12 @@ class Vector2D:
         return self._add(other)
 
     def _add(self, other):
-        if not isinstance(other, (Vector2D, float, int)):
-            raise TypeError()
         if isinstance(other, (float, int)):
-            return Vector2D(self._data + other)
-        return Vector2D(self._data + other._data)
+            return Vector2D(*(self._data + other))
+        elif isinstance(other, Vector2D):
+            return Vector2D(*(self._data + other._data))
+        else:
+            raise TypeError()
 
     def __sub__(self, other):
         return self._sub(other)
@@ -85,11 +76,12 @@ class Vector2D:
         return self._sub(other)
 
     def _sub(self, other):
-        if not isinstance(other, (Vector2D, float, int)):
-            raise TypeError()
         if isinstance(other, (float, int)):
-            return Vector2D(self._data - other)
-        return Vector2D(self._data - other._data)
+            return Vector2D(*(self._data - other))
+        elif isinstance(other, Vector2D):
+            return Vector2D(*(self._data - other._data))
+        else:
+            raise TypeError()
 
     def __mul__(self, other):
         return self._mul(other)
@@ -98,17 +90,18 @@ class Vector2D:
         return self._mul(other)
 
     def _mul(self, other):
-        if not isinstance(other, (Vector2D, float, int)):
-            raise TypeError()
         if isinstance(other, (float, int)):
-            return Vector2D(self._data * other)
-        return Vector2D(self._data * other._data)
+            return Vector2D(*(self._data * other))
+        elif isinstance(other, Vector2D):
+            return Vector2D(*(self._data * other._data))
+        else:
+            raise TypeError()
 
     def __neg__(self):
-        return Vector2D(-self._data)
+        return Vector2D(*(-self._data))
 
     def __abs__(self):
-        return Vector2D(np.abs(self._data))
+        return Vector2D(*np.abs(self._data))
 
     def __str__(self):
         return f"Vector2D({self.x}, {self.y})"

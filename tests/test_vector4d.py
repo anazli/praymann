@@ -12,17 +12,14 @@ class TestVector4D(unittest.TestCase):
             v = Vector4D("[1, 2, 3, 4]")
 
         with self.assertRaises(TypeError):
-            v = Vector4D(np.array([0, 1, 2, 3, 4]))
-
-        with self.assertRaises(TypeError):
-            v = Vector4D("1", "2", "3", "4")
+            v = Vector4D(np.array([0, 1, 2, 3]))
 
     def test_length(self):
-        v = Vector4D(np.array([1, 2, -3, -0.92785]))
+        v = Vector4D(1, 2, -3, -0.92785)
         self.assertEqual(3.8549845165058705, v.length())
 
     def test_normalized(self):
-        v = Vector4D(np.array([-1, 2, 3, -45.32]))
+        v = Vector4D(-1, 2, 3, -45.32)
         vn = v.normalized()
         self.assertAlmostEqual(-0.02199049, vn[0])
         self.assertAlmostEqual(0.04398099, vn[1])

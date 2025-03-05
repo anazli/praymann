@@ -12,17 +12,14 @@ class TestVector2D(unittest.TestCase):
             v = Vector2D("[1, 2]")
 
         with self.assertRaises(TypeError):
-            v = Vector2D(np.array([0, 1, 2]))
-
-        with self.assertRaises(TypeError):
-            v = Vector2D("1", "2")
+            v = Vector2D(np.array([0, 1]))
 
     def test_length(self):
-        v = Vector2D(np.array([2, -3]))
+        v = Vector2D(2, -3)
         self.assertEqual(3.605551275463989, v.length())
 
     def test_normalized(self):
-        v = Vector2D(np.array([-1, 2]))
+        v = Vector2D(-1, 2)
         vn = v.normalized()
         self.assertAlmostEqual(-0.4472136, vn[0])
         self.assertAlmostEqual(0.89442719, vn[1])

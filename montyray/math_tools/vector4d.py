@@ -6,31 +6,24 @@ from montyray.math_tools.point3d import Point3D
 
 class Vector4D:
     def __init__(self, *args):
-        """initializes a vector from a numpy 3D array"""
         if len(args) == 1:
-            if isinstance(args[0], (np.ndarray, list)) and len(args[0]) == 4:
-                self._data = np.array(args[0])
-            elif isinstance(args[0], Vector3D):
+            if isinstance(args[0], Vector3D):
                 self._data = np.append(args[0].coordinates, 0.0)
             elif isinstance(args[0], Point3D):
                 self._data = np.append(args[0].coordinates, 1.0)
             else:
-                raise TypeError(
-                    "A 4D numpy array or python list should be provided for Vector4D initializiation"
-                )
+                raise TypeError()
         elif len(args) == 4:
-            if all(isinstance(val, (int, float)) for val in args):
+            if all(isinstance(val, (int, float, str)) for val in args):
                 self._data = np.array(
                     [args[0], args[1], args[2], args[3]], dtype=np.float64
                 )
             else:
-                raise TypeError(
-                    "Float variables (x,y,z,w) should be provided for Vector4D initializiation"
-                )
+                raise TypeError()
         elif len(args) == 0:
             self._data = np.array([0, 0, 0, 0])
         else:
-            raise TypeError("Unknown input type for Vector4D initializiation")
+            raise TypeError()
 
     @property
     def x(self):
@@ -95,11 +88,12 @@ class Vector4D:
         return self._add(other)
 
     def _add(self, other):
-        if not isinstance(other, (Vector4D, float, int)):
-            raise TypeError()
         if isinstance(other, (float, int)):
-            return Vector4D(self._data + other)
-        return Vector4D(self._data + other._data)
+            return Vector4D(*(self._data + other))
+        elif isinstance(other, Vector4D):
+            return Vector4D(*(self._data + other._data))
+        else:
+            raise TypeError()
 
     def __sub__(self, other):
         return self._sub(other)
@@ -108,11 +102,12 @@ class Vector4D:
         return self._sub(other)
 
     def _sub(self, other):
-        if not isinstance(other, (Vector4D, float, int)):
-            raise TypeError()
         if isinstance(other, (float, int)):
-            return Vector4D(self._data - other)
-        return Vector4D(self._data - other._data)
+            return Vector4D(*(self._data - other))
+        elif isinstance(other, Vector4D):
+            return Vector4D(*(self._data - other._data))
+        else:
+            raise TypeError()
 
     def __mul__(self, other):
         return self._mul(other)
@@ -121,17 +116,18 @@ class Vector4D:
         return self._mul(other)
 
     def _mul(self, other):
-        if not isinstance(other, (Vector4D, float, int)):
-            raise TypeError()
         if isinstance(other, (float, int)):
-            return Vector4D(self._data * other)
-        return Vector4D(self._data * other._data)
+            return Vector4D(*(self._data * other))
+        elif isinstance(other, Vector4D):
+            return Vector4D(*(self._data * other._data))
+        else:
+            raise TypeError()
 
     def __neg__(self):
-        return Vector4D(-self._data)
+        return Vector4D(*(-self._data))
 
     def __abs__(self):
-        return Vector4D(np.abs(self._data))
+        return Vector4D(*np.abs(self._data))
 
     def __str__(self):
         return f"Vector4D({self.x}, {self.y}, {self.z}, {self.w})"
