@@ -46,38 +46,37 @@ class TestMathUtils(unittest.TestCase):
 
     def test_x_rot_matrix(self):
         p = Point3D(0, 1, 0)
-        m = x_rot_matrix(np.pi/4.0)
+        m = x_rot_matrix(np.pi / 4.0)
         res = m * p
         self.assertAlmostEqual(0, res.x)
-        self.assertAlmostEqual(np.sqrt(2)/2.0, res.y)
-        self.assertAlmostEqual(np.sqrt(2)/2.0, res.z)
+        self.assertAlmostEqual(np.sqrt(2) / 2.0, res.y)
+        self.assertAlmostEqual(np.sqrt(2) / 2.0, res.z)
 
         m = m.inverse
         res = m * p
         self.assertAlmostEqual(0, res.x)
-        self.assertAlmostEqual(np.sqrt(2)/2.0, res.y)
-        self.assertAlmostEqual(-np.sqrt(2)/2.0, res.z)
-        
+        self.assertAlmostEqual(np.sqrt(2) / 2.0, res.y)
+        self.assertAlmostEqual(-np.sqrt(2) / 2.0, res.z)
 
     def test_y_rot_matrix(self):
         p = Point3D(0, 0, 1)
-        m = y_rot_matrix(np.pi/4.0)
+        m = y_rot_matrix(np.pi / 4.0)
         res = m * p
-        self.assertAlmostEqual(np.sqrt(2)/2.0, res.x)
+        self.assertAlmostEqual(np.sqrt(2) / 2.0, res.x)
         self.assertAlmostEqual(0, res.y)
-        self.assertAlmostEqual(np.sqrt(2)/2.0, res.z)
+        self.assertAlmostEqual(np.sqrt(2) / 2.0, res.z)
 
     def test_z_rot_matrix(self):
         p = Point3D(0, 1, 0)
-        m = z_rot_matrix(np.pi/4.0)
+        m = z_rot_matrix(np.pi / 4.0)
         res = m * p
-        self.assertAlmostEqual(-np.sqrt(2)/2.0, res.x)
-        self.assertAlmostEqual(np.sqrt(2)/2.0, res.y)
+        self.assertAlmostEqual(-np.sqrt(2) / 2.0, res.x)
+        self.assertAlmostEqual(np.sqrt(2) / 2.0, res.y)
         self.assertAlmostEqual(0, res.z)
 
     def test_transformation_chaining(self):
         p = Point3D(1, 0, 1)
-        A = x_rot_matrix(np.pi/2.0)
+        A = x_rot_matrix(np.pi / 2.0)
         B = scale_matrix(5, 5, 5)
         C = translation_matrix(10, 5, 7)
 
