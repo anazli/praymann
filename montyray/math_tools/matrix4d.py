@@ -28,6 +28,10 @@ class Matrix4D:
     def inverse(self):
         return Matrix4D(np.linalg.inv(self._data))
 
+    @property
+    def transpose(self):
+        return Matrix4D(np.transpose(self._data))
+
     def __eq__(self, other):
         return self._eq(other)
 
@@ -75,11 +79,11 @@ class Matrix4D:
         if isinstance(other, Matrix4D):
             return Matrix4D(np.matmul(self._data, other._data))
         elif isinstance(other, Vector4D):
-            res = self._data * other.coordinates.reshape(4, 1)
+            res = np.matmul(self._data, other.coordinates.reshape(4, 1))
             return Vector4D(res[0], res[1], res[2], res[3])
         elif isinstance(other, Vector3D):
             v4 = Vector4D(other)
-            res = self._data * v4.coordinates.reshape(4, 1)
+            res = np.matmul(self._data, v4.coordinates.reshape(4, 1))
             return Vector3D(res[0, 0], res[1, 0], res[2, 0])
         elif isinstance(other, Point3D):
             v4 = Vector4D(other)
