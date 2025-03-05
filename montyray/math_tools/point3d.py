@@ -6,7 +6,7 @@ from montyray.math_tools.vector3d import Vector3D
 class Point3D:
     def __init__(self, *args):
         if len(args) == 3:
-            if all(isinstance(val, (int, float, str)) for val in args):
+            if all(isinstance(val, (int, float, str, np.float64)) for val in args):
                 self._data = np.array([args[0], args[1], args[2]], dtype=np.float64)
             else:
                 raise TypeError()

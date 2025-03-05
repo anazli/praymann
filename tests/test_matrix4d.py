@@ -2,11 +2,12 @@ import numpy as np
 import unittest
 
 from montyray.math_tools.matrix4d import Matrix4D
+from montyray.math_tools.vector4d import Vector4D
 
 
 class TestMatrix4D(unittest.TestCase):
 
-    def test_matrix(self):
+    def test_matrix_operations(self):
         a = Matrix4D()
         b = Matrix4D(
             np.array([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]])
@@ -29,3 +30,10 @@ class TestMatrix4D(unittest.TestCase):
         self.assertTrue(np.allclose(test_mat, res.data))
         a[0, 2] = 3.14
         self.assertEqual(3.14, a[0, 2])
+
+
+def test_matrix_vector_multipl(self):
+    m = Matrix4D()
+    v = Vector4D(-0.8, 3.14, -5, 44.0)
+    res = m * v
+    self.assertEqual(v, res)

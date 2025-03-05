@@ -14,7 +14,7 @@ class Vector4D:
             else:
                 raise TypeError()
         elif len(args) == 4:
-            if all(isinstance(val, (int, float, str)) for val in args):
+            if all(isinstance(val, (int, float, str, np.float64)) for val in args):
                 self._data = np.array(
                     [args[0], args[1], args[2], args[3]], dtype=np.float64
                 )

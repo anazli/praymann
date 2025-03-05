@@ -1,6 +1,8 @@
 import numpy as np
 
 from montyray.math_tools.vector4d import Vector4D
+from montyray.math_tools.vector3d import Vector3D
+from montyray.math_tools.point3d import Point3D
 
 
 class Matrix4D:
@@ -73,7 +75,16 @@ class Matrix4D:
         if isinstance(other, Matrix4D):
             return Matrix4D(np.matmul(self._data, other._data))
         elif isinstance(other, Vector4D):
-            return Matrix4D(self._data * other.coordinates.reshape(4, 1))
+            res = self._data * other.coordinates.reshape(4, 1)
+            return Vector4D(res[0], res[1], res[2], res[3])
+        elif isinstance(other, Vector3D):
+            v4 = Vector4D(other)
+            res = self._data * v4.coordinates.reshape(4, 1)
+            return Vector3D(res[0, 0], res[1, 0], res[2, 0])
+        elif isinstance(other, Point3D):
+            v4 = Vector4D(other)
+            res = np.matmul(self._data, v4.coordinates.reshape(4, 1))
+            return Point3D(res[0, 0], res[1, 0], res[2, 0])
         else:
             raise TypeError()
 

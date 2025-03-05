@@ -4,7 +4,7 @@ import numpy as np
 class Vector2D:
     def __init__(self, *args):
         if len(args) == 2:
-            if all(isinstance(val, (int, float, str)) for val in args):
+            if all(isinstance(val, (int, float, str, np.float64)) for val in args):
                 self._data = np.array([args[0], args[1]], dtype=np.float64)
             else:
                 raise TypeError()
