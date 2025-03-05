@@ -1,5 +1,6 @@
 import numpy as np
 
+from montyray.math_tools.matrix4d import Matrix4D
 from montyray.math_tools.vector3d import Vector3D
 from montyray.math_tools.vector2d import Vector2D
 from montyray.math_tools.vector4d import Vector4D
@@ -37,3 +38,77 @@ def cross(elem1, elem2):
         return ret
     else:
         raise TypeError("Cannot calculate the cross product of the given elements!")
+
+
+def identity_matrix():
+    return Matrix4D(np.identity(4))
+
+
+def zero_matrix():
+    return Matrix4D(np.zeros((4, 4)))
+
+
+def translation_matrix(x, y, z):
+    if (
+        isinstance(x, (int, float))
+        and isinstance(y, (int, float))
+        and isinstance(z, (int, float))
+    ):
+        m = np.identity(4)
+        m[0, 3] = x
+        m[1, 3] = y
+        m[2, 3] = z
+        return Matrix4D(m)
+    else:
+        raise TypeError()
+
+
+def scale_matrix(x, y, z):
+    if (
+        isinstance(x, (int, float))
+        and isinstance(y, (int, float))
+        and isinstance(z, (int, float))
+    ):
+        m = np.identity(4)
+        m[0, 0] = x
+        m[1, 1] = y
+        m[2, 2] = z
+        return Matrix4D(m)
+    else:
+        raise TypeError()
+
+
+def x_rot_matrix(rad):
+    if isinstance(rad, (int, float)):
+        m = np.identity(4)
+        m[1, 1] = np.cos(rad)
+        m[1, 2] = -np.sin(rad)
+        m[2, 1] = np.sin(rad)
+        m[2, 2] = np.cos(rad)
+        return Matrix4D(m)
+    else:
+        raise TypeError()
+
+
+def y_rot_matrix(rad):
+    if isinstance(rad, (int, float)):
+        m = np.identity(4)
+        m[0, 0] = np.cos(rad)
+        m[0, 2] = np.sin(rad)
+        m[2, 0] = -np.sin(rad)
+        m[2, 2] = np.cos(rad)
+        return Matrix4D(m)
+    else:
+        raise TypeError()
+
+
+def z_rot_matrix(rad):
+    if isinstance(rad, (int, float)):
+        m = np.identity(4)
+        m[0, 0] = np.cos(rad)
+        m[0, 1] = -np.sin(rad)
+        m[1, 0] = np.sin(rad)
+        m[1, 1] = np.cos(rad)
+        return Matrix4D(m)
+    else:
+        raise TypeError()
