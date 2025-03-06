@@ -1,4 +1,5 @@
 import numpy as np
+from numpy.ma.core import nomask
 
 from montyray.math_tools.vector3d import Vector3D
 from montyray.math_tools.point3d import Point3D
@@ -108,7 +109,7 @@ class Vector4D:
         if isinstance(other, (float, int)):
             return Vector4D(*(self._data - other))
         elif isinstance(other, Vector4D):
-            return Vector4D(*(self._data - other._data))
+            return Vector4D(*np.subtract(self._data, other._data))
         else:
             raise TypeError("cannot do subtraction between Vector4D and another type")
 
@@ -141,4 +142,5 @@ class Vector4D:
 
     def normalized(self) -> "Vector4D":
         """returns the normalized vector"""
-        return self._data / self.length()
+        norm_data = self._data / self.length()
+        return Vector4D(norm_data[0], norm_data[1], norm_data[2], norm_data[3])

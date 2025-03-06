@@ -81,7 +81,7 @@ class Vector2D:
         if isinstance(other, (float, int)):
             return Vector2D(*(self._data - other))
         elif isinstance(other, Vector2D):
-            return Vector2D(*(self._data - other._data))
+            return Vector2D(*np.subtract(self._data, other._data))
         else:
             raise TypeError("cannot do subtraction between Vector2D and another type")
 
@@ -114,4 +114,5 @@ class Vector2D:
 
     def normalized(self) -> "Vector2D":
         """returns the normalized vector"""
-        return self._data / self.length()
+        norm_data = self._data / self.length()
+        return Vector2D(norm_data[0], norm_data[1])

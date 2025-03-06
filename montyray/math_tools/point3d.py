@@ -93,9 +93,9 @@ class Point3D:
         if isinstance(other, (float, int)):
             return Point3D(*(self._data - other))
         elif isinstance(other, Point3D):
-            return Vector3D(*(self._data - other._data))
+            return Vector3D(*np.subtract(self._data, other._data))
         elif isinstance(other, Vector3D):
-            return Point3D(*(self._data - other._data))
+            return Point3D(*np.subtract(self._data, other._data))
         else:
             raise TypeError("Unknown type for Point3D subtraction")
 

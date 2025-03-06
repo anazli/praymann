@@ -1,4 +1,5 @@
 import numpy as np
+from distlib.util import normalize_name
 
 
 class Vector3D:
@@ -89,8 +90,8 @@ class Vector3D:
         if not isinstance(other, (Vector3D, float, int)):
             raise TypeError("cannot do subtraction between Vector3D and another type")
         if isinstance(other, (float, int)):
-            return Vector3D(*(self._data - other))
-        return Vector3D(*(self._data - other._data))
+            return Vector3D(*(self._data, other))
+        return Vector3D(*np.subtract(self._data, other._data))
 
     def __mul__(self, other):
         return self._mul(other)
@@ -122,4 +123,5 @@ class Vector3D:
 
     def normalized(self) -> "Vector3D":
         """returns the normalized vector"""
-        return self._data / self.length()
+        norm_data = self._data / self.length()
+        return Vector3D(norm_data[0], norm_data[1], norm_data[2])

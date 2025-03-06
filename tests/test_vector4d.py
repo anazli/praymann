@@ -21,10 +21,10 @@ class TestVector4D(unittest.TestCase):
     def test_normalized(self):
         v = Vector4D(-1, 2, 3, -45.32)
         vn = v.normalized()
-        self.assertAlmostEqual(-0.02199049, vn[0])
-        self.assertAlmostEqual(0.04398099, vn[1])
-        self.assertAlmostEqual(0.06597148, vn[2])
-        self.assertAlmostEqual(-0.99660918, vn[3])
+        self.assertAlmostEqual(-0.02199049, vn.x)
+        self.assertAlmostEqual(0.04398099, vn.y)
+        self.assertAlmostEqual(0.06597148, vn.z)
+        self.assertAlmostEqual(-0.99660918, vn.w)
 
     def test_operators(self):
         a = Vector4D(1, 2, 3, 4)

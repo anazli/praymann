@@ -21,9 +21,9 @@ class TestVector3D(unittest.TestCase):
     def test_normalized(self):
         v = Vector3D(-1, 2, 3)
         vn = v.normalized()
-        self.assertAlmostEqual(-0.26726124, vn[0])
-        self.assertAlmostEqual(0.53452248, vn[1])
-        self.assertAlmostEqual(0.80178373, vn[2])
+        self.assertAlmostEqual(-0.26726124, vn.x)
+        self.assertAlmostEqual(0.53452248, vn.y)
+        self.assertAlmostEqual(0.80178373, vn.z)
 
     def test_operators(self):
         a = Vector3D(1, 2, 3)

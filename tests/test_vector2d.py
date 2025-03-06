@@ -21,8 +21,8 @@ class TestVector2D(unittest.TestCase):
     def test_normalized(self):
         v = Vector2D(-1, 2)
         vn = v.normalized()
-        self.assertAlmostEqual(-0.4472136, vn[0])
-        self.assertAlmostEqual(0.89442719, vn[1])
+        self.assertAlmostEqual(-0.4472136, vn.x)
+        self.assertAlmostEqual(0.89442719, vn.y)
 
     def test_operators(self):
         a = Vector2D(-1.55, 6.243)

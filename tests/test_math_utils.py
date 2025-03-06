@@ -76,10 +76,10 @@ class TestMathUtils(unittest.TestCase):
 
     def test_transformation_chaining(self):
         p = Point3D(1, 0, 1)
-        A = x_rot_matrix(np.pi / 2.0)
-        B = scale_matrix(5, 5, 5)
-        C = translation_matrix(10, 5, 7)
+        a = x_rot_matrix(np.pi / 2.0)
+        b = scale_matrix(5, 5, 5)
+        c = translation_matrix(10, 5, 7)
 
-        m = C * B * A
+        m = c * b * a
         res = m * p
         self.assertEqual(Point3D(15, 0, 7), res)

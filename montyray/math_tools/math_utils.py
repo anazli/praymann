@@ -112,3 +112,27 @@ def z_rot_matrix(rad: int | float) -> Matrix4D:
         return Matrix4D(m)
     else:
         raise TypeError("unknown input type for rotation matrix")
+
+
+def view_transform(self, from_v: Vector3D, to_v: Vector3D, up_v: Vector3D) -> Matrix4D:
+    if (
+        not isinstance(from_v, Vector3D)
+        or not isinstance(to_v, Vector3D)
+        or not isinstance(up_v, Vector3D)
+    ):
+        raise TypeError("invalid parameter for view transform matrix")
+    forward = (to_v - from_v).normalized()
+    up_norm = up_v.normalized()
+    left = cross(forward, up_norm)
+    up_res = cross(left, forward)
+
+    m = np.array(
+        [
+            [left.x, left.y, left.z, 0.0],
+            [up_res.x, up_res.y, up_res.z, 0.0],
+            [-forward.x, -forward.y, -forward.z, 0.0],
+            [0.0, 0.0, 0.0, 1.0],
+        ]
+    )
+
+    return Matrix4D(m) * translation_matrix(-from_v.x, -from_v.y, -from_v.z)

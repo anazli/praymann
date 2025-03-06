@@ -84,7 +84,7 @@ class Matrix4D:
             return Matrix4D(np.matmul(self._data, other._data))
         elif isinstance(other, Vector4D):
             res = np.matmul(self._data, other.coordinates.reshape(4, 1))
-            return Vector4D(res[0], res[1], res[2], res[3])
+            return Vector4D(res[0, 0], res[1, 0], res[2, 0], res[3, 0])
         elif isinstance(other, Vector3D):
             v4 = Vector4D(other)
             res = np.matmul(self._data, v4.coordinates.reshape(4, 1))

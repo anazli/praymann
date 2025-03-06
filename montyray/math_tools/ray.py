@@ -8,8 +8,8 @@ class Ray:
         if isinstance(origin, (np.ndarray, list)) and isinstance(
             direction, (np.ndarray, list)
         ):
-            self._origin = Point3D(origin)
-            self._direction = Vector3D(direction)
+            self._origin = Point3D(*origin)
+            self._direction = Vector3D(*direction)
         elif isinstance(origin, Point3D) and isinstance(direction, Vector3D):
             self._origin = origin
             self._direction = direction
