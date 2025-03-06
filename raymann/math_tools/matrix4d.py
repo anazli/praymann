@@ -1,8 +1,8 @@
 import numpy as np
 
-from montyray.math_tools.vector4d import Vector4D
-from montyray.math_tools.vector3d import Vector3D
-from montyray.math_tools.point3d import Point3D
+from raymann.math_tools.vector4d import Vector4D
+from raymann.math_tools.vector3d import Vector3D
+from raymann.math_tools.point3d import Point3D
 
 
 class Matrix4D:

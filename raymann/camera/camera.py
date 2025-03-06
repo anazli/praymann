@@ -1,8 +1,8 @@
-from montyray.math_tools.ray import Ray
+from raymann.math_tools.ray import Ray
 import numpy as np
-from montyray.math_tools.matrix4d import Matrix4D
-from montyray.math_tools.vector4d import Vector4D
-from montyray.math_tools.point3d import Point3D
+from raymann.math_tools.matrix4d import Matrix4D
+from raymann.math_tools.vector4d import Vector4D
+from raymann.math_tools.point3d import Point3D
 
 
 class Camera:

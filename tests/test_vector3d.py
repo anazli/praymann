@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from montyray.math_tools.vector3d import Vector3D
+from raymann.math_tools.vector3d import Vector3D
 
 
 class TestVector3D(unittest.TestCase):

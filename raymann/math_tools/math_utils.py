@@ -1,10 +1,10 @@
 import numpy as np
 
-from montyray.math_tools.matrix4d import Matrix4D
-from montyray.math_tools.vector3d import Vector3D
-from montyray.math_tools.vector2d import Vector2D
-from montyray.math_tools.vector4d import Vector4D
-from montyray.math_tools.point3d import Point3D
+from raymann.math_tools.matrix4d import Matrix4D
+from raymann.math_tools.vector3d import Vector3D
+from raymann.math_tools.vector2d import Vector2D
+from raymann.math_tools.vector4d import Vector4D
+from raymann.math_tools.point3d import Point3D
 
 
 def dot(elem1: Vector2D | Vector3D | Vector4D, elem2: Vector2D | Vector3D | Vector4D):

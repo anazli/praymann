@@ -1,5 +1,5 @@
-from montyray.math_tools.matrix4d import Matrix4D
-from montyray.math_tools.ray import Ray
+from raymann.math_tools.matrix4d import Matrix4D
+from raymann.math_tools.ray import Ray
 
 
 class Transformer:

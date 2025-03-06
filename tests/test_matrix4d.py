@@ -1,8 +1,8 @@
 import numpy as np
 import unittest
 
-from montyray.math_tools.matrix4d import Matrix4D
-from montyray.math_tools.vector4d import Vector4D
+from raymann.math_tools.matrix4d import Matrix4D
+from raymann.math_tools.vector4d import Vector4D
 
 
 class TestMatrix4D(unittest.TestCase):

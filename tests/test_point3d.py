@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-from montyray.math_tools.point3d import Point3D
+from raymann.math_tools.point3d import Point3D
 
 
 class TestPoint3D(unittest.TestCase):

@@ -1,10 +1,10 @@
 import unittest
 import numpy as np
-from montyray.camera.camera import Camera
-from montyray.math_tools.math_utils import y_rot_matrix, translation_matrix
-from montyray.math_tools.matrix4d import Matrix4D
-from montyray.math_tools.point3d import Point3D
-from montyray.math_tools.vector3d import Vector3D
+from raymann.camera.camera import Camera
+from raymann.math_tools.math_utils import y_rot_matrix, translation_matrix
+from raymann.math_tools.matrix4d import Matrix4D
+from raymann.math_tools.point3d import Point3D
+from raymann.math_tools.vector3d import Vector3D
 
 
 class TestCamera(unittest.TestCase):

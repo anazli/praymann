@@ -2,11 +2,11 @@ import unittest
 
 import numpy as np
 
-from montyray.math_tools.ray import Ray
-from montyray.math_tools.vector3d import Vector3D
-from montyray.math_tools.point3d import Point3D
-from montyray.math_tools.math_utils import translation_matrix, scale_matrix
-from montyray.transformation.transformer import Transformer
+from raymann.math_tools.ray import Ray
+from raymann.math_tools.vector3d import Vector3D
+from raymann.math_tools.point3d import Point3D
+from raymann.math_tools.math_utils import translation_matrix, scale_matrix
+from raymann.transformation.transformer import Transformer
 
 
 class TestRay(unittest.TestCase):
