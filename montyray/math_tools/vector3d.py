@@ -20,7 +20,7 @@ class Vector3D:
     @x.setter
     def x(self, val: int | float):
         if not isinstance(val, (int, float)):
-            raise TypeError()
+            raise TypeError("float or int must be provided")
         self._data[0] = val
 
     @property
@@ -30,7 +30,7 @@ class Vector3D:
     @y.setter
     def y(self, val: int | float):
         if not isinstance(val, (int, float)):
-            raise TypeError()
+            raise TypeError("float or int must be provided")
         self._data[1] = val
 
     @property
@@ -40,7 +40,7 @@ class Vector3D:
     @z.setter
     def z(self, val: int | float):
         if not isinstance(val, (int, float)):
-            raise TypeError()
+            raise TypeError("float or int must be provided")
         self._data[2] = val
 
     @property

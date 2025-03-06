@@ -4,7 +4,7 @@ from montyray.math_tools.vector3d import Vector3D
 
 
 class Ray:
-    def __init__(self, *, origin, direction):
+    def __init__(self, *, origin: Point3D, direction: Vector3D):
         if isinstance(origin, (np.ndarray, list)) and isinstance(
             direction, (np.ndarray, list)
         ):
@@ -19,12 +19,12 @@ class Ray:
             )
 
     @property
-    def origin(self):
+    def origin(self) -> Point3D:
         return self._origin
 
     @property
-    def direction(self):
+    def direction(self) -> Vector3D:
         return self._direction
 
-    def position(self, t):
+    def position(self, t) -> Vector3D:
         return self._origin + t * self._direction

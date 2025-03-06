@@ -7,7 +7,7 @@ from montyray.math_tools.vector4d import Vector4D
 from montyray.math_tools.point3d import Point3D
 
 
-def dot(elem1, elem2):
+def dot(elem1: Vector2D | Vector3D | Vector4D, elem2: Vector2D | Vector3D | Vector4D):
     """dot product of two math entities"""
     if (
         (isinstance(elem1, Vector2D) and isinstance(elem2, Vector2D))
@@ -19,7 +19,7 @@ def dot(elem1, elem2):
         raise TypeError("Cannot calculate the dot product of the given elements!")
 
 
-def cross(elem1, elem2):
+def cross(elem1: Vector2D | Vector3D | Vector4D, elem2: Vector2D | Vector3D | Vector4D):
     """cross product of two math entities"""
     if isinstance(elem1, Vector2D) and isinstance(elem2, Vector2D):
         new_data = np.cross(elem1.coordinates, elem2.coordinates)
@@ -40,15 +40,15 @@ def cross(elem1, elem2):
         raise TypeError("Cannot calculate the cross product of the given elements!")
 
 
-def identity_matrix():
+def identity_matrix() -> Matrix4D:
     return Matrix4D(np.identity(4))
 
 
-def zero_matrix():
+def zero_matrix() -> Matrix4D:
     return Matrix4D(np.zeros((4, 4)))
 
 
-def translation_matrix(x, y, z):
+def translation_matrix(x: int | float, y: int | float, z: int | float) -> Matrix4D:
     if (
         isinstance(x, (int, float))
         and isinstance(y, (int, float))
@@ -60,10 +60,10 @@ def translation_matrix(x, y, z):
         m[2, 3] = z
         return Matrix4D(m)
     else:
-        raise TypeError()
+        raise TypeError("unknown input type for translation matrix")
 
 
-def scale_matrix(x, y, z):
+def scale_matrix(x: int | float, y: int | float, z: int | float) -> Matrix4D:
     if (
         isinstance(x, (int, float))
         and isinstance(y, (int, float))
@@ -75,10 +75,10 @@ def scale_matrix(x, y, z):
         m[2, 2] = z
         return Matrix4D(m)
     else:
-        raise TypeError()
+        raise TypeError("unknown input type for scale matrix")
 
 
-def x_rot_matrix(rad):
+def x_rot_matrix(rad: int | float) -> Matrix4D:
     if isinstance(rad, (int, float)):
         m = np.identity(4)
         m[1, 1] = np.cos(rad)
@@ -87,10 +87,10 @@ def x_rot_matrix(rad):
         m[2, 2] = np.cos(rad)
         return Matrix4D(m)
     else:
-        raise TypeError()
+        raise TypeError("unknown input type for rotation matrix")
 
 
-def y_rot_matrix(rad):
+def y_rot_matrix(rad: int | float) -> Matrix4D:
     if isinstance(rad, (int, float)):
         m = np.identity(4)
         m[0, 0] = np.cos(rad)
@@ -99,10 +99,10 @@ def y_rot_matrix(rad):
         m[2, 2] = np.cos(rad)
         return Matrix4D(m)
     else:
-        raise TypeError()
+        raise TypeError("unknown input type for rotation matrix")
 
 
-def z_rot_matrix(rad):
+def z_rot_matrix(rad: int | float) -> Matrix4D:
     if isinstance(rad, (int, float)):
         m = np.identity(4)
         m[0, 0] = np.cos(rad)
@@ -111,4 +111,4 @@ def z_rot_matrix(rad):
         m[1, 1] = np.cos(rad)
         return Matrix4D(m)
     else:
-        raise TypeError()
+        raise TypeError("unknown input type for rotation matrix")
