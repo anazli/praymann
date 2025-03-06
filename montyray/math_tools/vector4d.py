@@ -118,7 +118,7 @@ class Vector4D:
     def __rmul__(self, other):
         return self._mul(other)
 
-    def _mul(self, other: int | float | "Vector4D") -> "Vector4D":
+    def _mul(self, other: "int | float | Vector4D") -> "Vector4D":
         if isinstance(other, (float, int)):
             return Vector4D(*(self._data * other))
         elif isinstance(other, Vector4D):
