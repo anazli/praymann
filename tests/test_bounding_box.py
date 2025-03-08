@@ -1,3 +1,6 @@
+# Copyright (c) 2025 Andreas Nazlidis
+# Licensed under the GNU General Public License v3.
+# See LICENSE file for details.
 import unittest
 from raymann.math_tools.point3d import Point3D
 from raymann.acceleration.bounding_box import BoundingBox

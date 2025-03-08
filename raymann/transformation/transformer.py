@@ -1,3 +1,6 @@
+# Copyright (c) 2025 Andreas Nazlidis
+# Licensed under the GNU General Public License v3.
+# See LICENSE file for details.
 from raymann.math_tools.matrix4d import Matrix4D
 from raymann.math_tools.ray import Ray
 

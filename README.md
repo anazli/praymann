@@ -1,2 +1,2 @@
-# montyray
-Ray tracer in python
+# Raymann
+A pythonic ray tracer. work in progress...
