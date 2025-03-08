@@ -7,7 +7,9 @@ from raymann.math_tools.vector3d import Vector3D
 
 
 class Ray:
-    def __init__(self, *, origin: Point3D, direction: Vector3D):
+    def __init__(self, *, origin: Point3D, direction: Vector3D, tmin: float = 0.001, tmax:float = np.inf):
+        self._tmin = tmin
+        self._tmax = tmax
         if isinstance(origin, (np.ndarray, list)) and isinstance(
             direction, (np.ndarray, list)
         ):
@@ -28,6 +30,14 @@ class Ray:
     @property
     def direction(self) -> Vector3D:
         return self._direction
+
+    @property
+    def tmin(self) -> float:
+        return self._tmin
+
+    @property
+    def tmax(self) -> float:
+        return self._tmax
 
     def position(self, t) -> Vector3D:
         return self._origin + t * self._direction

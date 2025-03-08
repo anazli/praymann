@@ -8,13 +8,10 @@ from raymann.math_tools.ray import Ray
 
 
 class BoundingBox:
-    def __init__(self, min_point: Point3D = None, max_point: Point3D = None):
+    def __init__(self, min_point: Point3D = Point3D(np.inf, np.inf, np.inf), max_point: Point3D = Point3D(-np.inf, -np.inf, -np.inf)):
         if isinstance(min_point, Point3D) and isinstance(max_point, Point3D):
             self._min_point = min_point
             self._max_point = max_point
-        elif min_point is None and max_point is None:
-            self._min_point = Point3D(np.inf, np.inf, np.inf)
-            self._max_point = Point3D(-np.inf, -np.inf, -np.inf)
         else:
             raise TypeError("invalid parameters for bbox initialization, must be Point3D")
 

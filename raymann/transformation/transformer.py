@@ -6,13 +6,9 @@ from raymann.math_tools.ray import Ray
 
 
 class Transformer:
-    def __init__(self, mat: Matrix4D = None):
+    def __init__(self, mat: Matrix4D = Matrix4D()):
         if isinstance(mat, Matrix4D):
             self._matrix = mat
-            self._inverse = self._matrix.inverse
-            self._inverse_transpose = self._inverse.transpose
-        elif mat is None:
-            self._matrix = Matrix4D()
             self._inverse = self._matrix.inverse
             self._inverse_transpose = self._inverse.transpose
         else:
