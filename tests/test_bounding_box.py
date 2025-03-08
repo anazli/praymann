@@ -5,6 +5,7 @@ import unittest
 from raymann.math_tools.point3d import Point3D
 from raymann.acceleration.bounding_box import BoundingBox
 
+
 class TestBoundingBox(unittest.TestCase):
 
     def test_point_addition(self):
@@ -45,6 +46,3 @@ class TestBoundingBox(unittest.TestCase):
         self.assertFalse(box1.contains_box(box2))
         box2 = BoundingBox(Point3D(6, -1, 1), Point3D(12, 5, 8))
         self.assertFalse(box1.contains_box(box2))
-
-
-

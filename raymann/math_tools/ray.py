@@ -7,7 +7,14 @@ from raymann.math_tools.vector3d import Vector3D
 
 
 class Ray:
-    def __init__(self, *, origin: Point3D, direction: Vector3D, tmin: float = 0.001, tmax:float = np.inf):
+    def __init__(
+        self,
+        *,
+        origin: Point3D,
+        direction: Vector3D,
+        tmin: float = 0.001,
+        tmax: float = np.inf
+    ):
         self._tmin = tmin
         self._tmax = tmax
         if isinstance(origin, (np.ndarray, list)) and isinstance(

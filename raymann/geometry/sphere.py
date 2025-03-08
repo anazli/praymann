@@ -13,8 +13,17 @@ from raymann.common.intersection import Intersection
 
 
 class Sphere(Primitive):
-    def __init__(self, transf:Transformer = Transformer(), center: Point3D = Point3D(), radius: int | float = 1.0):
-        if isinstance(transf, Transformer) and isinstance(center, Point3D) and isinstance(radius, (int, float)):
+    def __init__(
+        self,
+        transf: Transformer = Transformer(),
+        center: Point3D = Point3D(),
+        radius: int | float = 1.0,
+    ):
+        if (
+            isinstance(transf, Transformer)
+            and isinstance(center, Point3D)
+            and isinstance(radius, (int, float))
+        ):
             super().__init__(transf)
             self._center = center
             self._radius = radius
@@ -35,15 +44,15 @@ class Sphere(Primitive):
         c = dot(co, co) - self._radius**2
         discr = b**2 - 4.0 * a * c
         if discr >= 0.0:
-            t1 = (-b - np.sqrt(discr))/ (2.0 * a)
-            t2 = (-b + np.sqrt(discr))/ (2.0 * a)
+            t1 = (-b - np.sqrt(discr)) / (2.0 * a)
+            t2 = (-b + np.sqrt(discr)) / (2.0 * a)
             thit = get_min_hit_param(transf_ray.tmin, transf_ray.tmax, t1, t2)
             record.hit_point = transf_ray.position(thit)
             return True
         return False
-    
-    def pdf(self, record:Intersection, wi: Vector3D) -> float:
 
+    def pdf(self, record: Intersection, wi: Vector3D) -> float:
+        pass
 
     def surface_area(self) -> float:
         return 4.0 * np.pi * self._radius**2

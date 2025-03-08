@@ -38,13 +38,13 @@ class Spectrum:
         else:
             raise TypeError("a and b must be int or float")
 
-    def __eq__(self, other: 'Spectrum') -> bool:
+    def __eq__(self, other: "Spectrum") -> bool:
         if isinstance(other, Spectrum):
             return self._color == other._color
         else:
             raise TypeError("cannot compare Spectrum with other type")
 
-    def __ne__(self, other: 'Spectrum') -> bool:
+    def __ne__(self, other: "Spectrum") -> bool:
         if isinstance(other, Spectrum):
             return self._color != other._color
         else:
@@ -56,7 +56,7 @@ class Spectrum:
     def __radd__(self, other):
         return self._add(other)
 
-    def _add(self, other: 'Spectrum') -> 'Spectrum':
+    def _add(self, other: "Spectrum") -> "Spectrum":
         if isinstance(other, Spectrum):
             return Spectrum(self._color + other._color)
         elif isinstance(other, (int, float)):
@@ -70,7 +70,7 @@ class Spectrum:
     def __rsub__(self, other):
         return self._add(other)
 
-    def _sub(self, other: 'Spectrum') -> 'Spectrum':
+    def _sub(self, other: "Spectrum") -> "Spectrum":
         if isinstance(other, Spectrum):
             return Spectrum(self._color - other._color)
         elif isinstance(other, (int, float)):
@@ -84,15 +84,17 @@ class Spectrum:
     def __rmul__(self, other):
         return self._add(other)
 
-    def _mul(self, other: 'Spectrum') -> 'Spectrum':
+    def _mul(self, other: "Spectrum") -> "Spectrum":
         if isinstance(other, Spectrum):
             return Spectrum(self._color * other._color)
         elif isinstance(other, (int, float)):
             return Spectrum(self._color * other)
         else:
-            raise TypeError("cannot do multiplication between Spectrum and another type")
+            raise TypeError(
+                "cannot do multiplication between Spectrum and another type"
+            )
 
-    def __neg__(self) -> 'Spectrum':
+    def __neg__(self) -> "Spectrum":
         return Spectrum(-self._color)
 
     def __str__(self) -> str:

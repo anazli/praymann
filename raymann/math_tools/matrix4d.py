@@ -9,7 +9,7 @@ from raymann.math_tools.point3d import Point3D
 
 
 class Matrix4D:
-    def __init__(self, mat4: 'Matrix4D' = None):
+    def __init__(self, mat4: "Matrix4D" = None):
         if isinstance(mat4, Matrix4D):
             self._data = mat4._data
         elif isinstance(mat4, np.ndarray):

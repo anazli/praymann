@@ -8,12 +8,18 @@ from raymann.math_tools.ray import Ray
 
 
 class BoundingBox:
-    def __init__(self, min_point: Point3D = Point3D(np.inf, np.inf, np.inf), max_point: Point3D = Point3D(-np.inf, -np.inf, -np.inf)):
+    def __init__(
+        self,
+        min_point: Point3D = Point3D(np.inf, np.inf, np.inf),
+        max_point: Point3D = Point3D(-np.inf, -np.inf, -np.inf),
+    ):
         if isinstance(min_point, Point3D) and isinstance(max_point, Point3D):
             self._min_point = min_point
             self._max_point = max_point
         else:
-            raise TypeError("invalid parameters for bbox initialization, must be Point3D")
+            raise TypeError(
+                "invalid parameters for bbox initialization, must be Point3D"
+            )
 
     @property
     def min_point(self) -> Point3D:
@@ -55,7 +61,7 @@ class BoundingBox:
         else:
             raise TypeError("cannot add unknown type to BBox")
 
-    def add_box(self, box: 'BoundingBox'):
+    def add_box(self, box: "BoundingBox"):
         if isinstance(box, BoundingBox):
             self.add_point(box.min_point)
             self.add_point(box.max_point)
@@ -64,14 +70,21 @@ class BoundingBox:
 
     def contains_point(self, point: Point3D) -> bool:
         if isinstance(point, Point3D):
-            return point.x >= self._min_point.x and point.x <= self._max_point.x and \
-            point.y >= self._min_point.y and point.y <= self.max_point.y and \
-            point.z >= self._min_point.z and point.z <= self._max_point.z
+            return (
+                point.x >= self._min_point.x
+                and point.x <= self._max_point.x
+                and point.y >= self._min_point.y
+                and point.y <= self.max_point.y
+                and point.z >= self._min_point.z
+                and point.z <= self._max_point.z
+            )
         return False
 
-    def contains_box(self, box: 'BoundingBox') -> bool:
+    def contains_box(self, box: "BoundingBox") -> bool:
         if isinstance(box, BoundingBox):
-            return self.contains_point(box.min_point) and self.contains_point(box.max_point)
+            return self.contains_point(box.min_point) and self.contains_point(
+                box.max_point
+            )
         return False
 
     def intersects_ray(self, ray: Ray) -> bool:
@@ -88,7 +101,13 @@ class BoundingBox:
             return False
         return True
 
-    def _hit_axis(self, origin:int | float, direction:int |float, mmin:int |float, mmax:int |float) -> (float, float):
+    def _hit_axis(
+        self,
+        origin: int | float,
+        direction: int | float,
+        mmin: int | float,
+        mmax: int | float,
+    ) -> (float, float):
         tmin_numer = mmin - origin
         tmax_numer = mmax - origin
         tmin, tmax = 0, 0
