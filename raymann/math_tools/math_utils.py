@@ -139,3 +139,19 @@ def view_transform(self, from_v: Vector3D, to_v: Vector3D, up_v: Vector3D) -> Ma
     )
 
     return Matrix4D(m) * translation_matrix(-from_v.x, -from_v.y, -from_v.z)
+
+def cosine_sample_hemisphere(u:Vector2D) -> Vector3D:
+    if not isinstance(u, Vector2D):
+        raise TypeError()
+    z = u.x
+    r = np.sqrt(max(0.0, 1.0 - z*z))
+    phi = 2 * np.pi * u.y
+    x = r * np.cos(phi)
+    y = r * np.sin(phi)
+    return Vector3D(x,y,z)
+
+def same_hemisphere(v1:Vector3D, v2:Vector3D) -> bool:
+    if isinstance(v1, Vector3D) and isinstance(v2, Vector3D):
+        return v1.z * v2.z > 0.0
+    else:
+        raise TypeError()

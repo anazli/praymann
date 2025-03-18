@@ -11,6 +11,8 @@ class Intersection:
         self._hit_point = Point3D()
         self._normal = Normal3D()
         self._wo = Vector3D()
+        self._surf_tangent = Vector3D()
+        self._surf_bitangent = Vector3D()
         # Material of closest primitive
         # the closest primitive
 
@@ -47,3 +49,25 @@ class Intersection:
     def wo(self, v):
         if isinstance(v, Vector3D):
             self._wo = v
+
+    @property
+    def surf_tangent(self) -> Vector3D:
+        return self._surf_tangent
+
+    @surf_tangent.setter
+    def surf_tangent(self, val:Vector3D):
+        if isinstance(val, Vector3D):
+            self._surf_tangent = val
+        else:
+            raise TypeError()
+
+    @property
+    def surf_bitangent(self) -> Vector3D:
+        return self._surf_bitangent
+
+    @surf_bitangent.setter
+    def surf_bitangent(self, val: Vector3D):
+        if isinstance(val, Vector3D):
+            self._surf_bitangent = val
+        else:
+            raise TypeError()

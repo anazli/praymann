@@ -5,6 +5,7 @@ import numpy as np
 
 from raymann.geometry.primitive import Primitive, get_min_hit_param
 from raymann.math_tools.math_utils import dot
+from raymann.math_tools.normal3d import Normal3D
 from raymann.math_tools.point3d import Point3D
 from raymann.math_tools.vector3d import Vector3D
 from raymann.transformation.transformer import Transformer
@@ -48,6 +49,8 @@ class Sphere(Primitive):
             t2 = (-b + np.sqrt(discr)) / (2.0 * a)
             thit = get_min_hit_param(transf_ray.tmin, transf_ray.tmax, t1, t2)
             record.hit_point = transf_ray.position(thit)
+            record.wo = -ray.direction # in world coords
+            record.normal = Normal3D((record.hit_point - self._center).normalized())
             return True
         return False
 

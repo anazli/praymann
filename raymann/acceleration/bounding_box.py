@@ -71,12 +71,9 @@ class BoundingBox:
     def contains_point(self, point: Point3D) -> bool:
         if isinstance(point, Point3D):
             return (
-                point.x >= self._min_point.x
-                and point.x <= self._max_point.x
-                and point.y >= self._min_point.y
-                and point.y <= self.max_point.y
-                and point.z >= self._min_point.z
-                and point.z <= self._max_point.z
+                    self._min_point.x <= point.x <= self._max_point.x
+                    and self._min_point.y <= point.y <= self.max_point.y
+                    and self._min_point.z <= point.z <= self._max_point.z
             )
         return False
 

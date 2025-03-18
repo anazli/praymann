@@ -8,6 +8,7 @@ import numpy as np
 
 from raymann.acceleration.bounding_box import BoundingBox
 from raymann.common.intersection import Intersection
+from raymann.math_tools.math_utils import dot
 from raymann.math_tools.vector3d import Vector3D
 from raymann.transformation.transformer import Transformer
 from raymann.math_tools.ray import Ray
@@ -42,7 +43,14 @@ class Primitive(ABC):
         """probability density of sampling a point on the primitive"""
         if not isinstance(record, Intersection) or not isinstance(wi, Vector3D):
             raise TypeError("invalid parameters, should be (Intersection, Vector3D)")
-        return False
+        ray = Ray(record.hit_point, wi)
+        inters = Intersection()
+        if not self.intersect(ray, inters):
+            return 0.0
+        res = (record.hit_point - inters.hit_point).length()**2/ (np.abs(dot(inters.normal, -wi)) * self.surface_area())
+        if np.isinf(res):
+            res = 0.0
+        return res
 
     @abstractmethod
     def surface_area(self) -> float:
