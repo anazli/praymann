@@ -10,8 +10,8 @@ class Ray:
     def __init__(
         self,
         *,
-        origin: Point3D,
-        direction: Vector3D,
+        origin: Point3D = Point3D(),
+        direction: Vector3D = Vector3D(),
         tmin: float = 0.001,
         tmax: float = np.inf
     ):

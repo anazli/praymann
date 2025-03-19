@@ -1,6 +1,8 @@
 # Copyright (c) 2025 Andreas Nazlidis
 # Licensed under the GNU General Public License v3.
 # See LICENSE file for details.
+import numpy as np
+
 from raymann.math_tools.normal3d import Normal3D
 from raymann.math_tools.point3d import Point3D
 from raymann.math_tools.vector3d import Vector3D
@@ -13,6 +15,7 @@ class Intersection:
         self._wo = Vector3D()
         self._surf_tangent = Vector3D()
         self._surf_bitangent = Vector3D()
+        self._hit_parameter = np.inf
         # Material of closest primitive
         # the closest primitive
 
@@ -71,3 +74,15 @@ class Intersection:
             self._surf_bitangent = val
         else:
             raise TypeError()
+
+    @property
+    def t_hit(self) -> float:
+        return self._hit_parameter
+
+    @t_hit.setter
+    def t_hit(self, val: (int, float)):
+        if isinstance(val, (int, float)):
+            self._hit_parameter = val
+        else:
+            raise TypeError("must be float or int")
+

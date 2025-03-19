@@ -47,8 +47,8 @@ class Sphere(Primitive):
         if discr >= 0.0:
             t1 = (-b - np.sqrt(discr)) / (2.0 * a)
             t2 = (-b + np.sqrt(discr)) / (2.0 * a)
-            thit = get_min_hit_param(transf_ray.tmin, transf_ray.tmax, t1, t2)
-            record.hit_point = transf_ray.position(thit)
+            record.t_hit = get_min_hit_param(transf_ray.tmin, transf_ray.tmax, t1, t2)
+            record.hit_point.coordinates = transf_ray.position(record.t_hit).coordinates
             record.wo = -ray.direction # in world coords
             record.normal = Normal3D((record.hit_point - self._center).normalized())
             return True
