@@ -1,0 +1,12 @@
+[tool.poetry]
+version="0.0.1"
+description="A pythonic ray tracer"
+authors=["Andreas Nazlidis"]
+
+[tool.poetry.dependencies]
+python="^3.8"
+numpy="^2.2.3"
+scipy="^1.15.2"
+
+[tool.poetry.dev-dependencies]
+pytest="^8.3.5"
