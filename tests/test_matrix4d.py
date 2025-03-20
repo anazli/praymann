@@ -2,14 +2,14 @@
 # Licensed under the GNU General Public License v3.
 # See LICENSE file for details.
 import numpy as np
-import unittest
+import pytest
 
 from raymann.math_tools.matrix4d import Matrix4D
 from raymann.math_tools.vector4d import Vector4D
 
 
-class TestMatrix4D(unittest.TestCase):
-
+class TestMatrix4D:
+    
     def test_matrix_operations(self):
         a = Matrix4D()
         b = Matrix4D(
@@ -30,13 +30,13 @@ class TestMatrix4D(unittest.TestCase):
             ]
         )
 
-        self.assertTrue(np.allclose(test_mat, res.data))
+        assert np.allclose(test_mat, res.data)
         a[0, 2] = 3.14
-        self.assertEqual(3.14, a[0, 2])
+        assert 3.14 == a[0, 2]
 
 
-def test_matrix_vector_multipl(self):
-    m = Matrix4D()
-    v = Vector4D(-0.8, 3.14, -5, 44.0)
-    res = m * v
-    self.assertEqual(v, res)
+    def test_matrix_vector_multiplication(self):
+        m = Matrix4D()
+        v = Vector4D(-0.8, 3.14, -5, 44.0)
+        res = m * v
+        assert v == res

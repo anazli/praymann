@@ -81,7 +81,7 @@ class Vector4D:
         self._data = np.array(data)
 
     def __eq__(self, other):
-        return _eq(other)
+        return self._eq(other)
 
     def _eq(self, other: "Vector4D") -> bool:
         if not isinstance(other, Vector4D):
