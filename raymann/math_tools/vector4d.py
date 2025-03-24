@@ -4,6 +4,7 @@
 import numpy as np
 from numpy.ma.core import nomask
 
+from raymann.math_tools.normal3d import Normal3D
 from raymann.math_tools.vector3d import Vector3D
 from raymann.math_tools.point3d import Point3D
 
@@ -11,12 +12,12 @@ from raymann.math_tools.point3d import Point3D
 class Vector4D:
     def __init__(self, *args):
         if len(args) == 1:
-            if isinstance(args[0], Vector3D):
+            if isinstance(args[0], (Vector3D, Normal3D)):
                 self._data = np.append(args[0].coordinates, 0.0)
             elif isinstance(args[0], Point3D):
                 self._data = np.append(args[0].coordinates, 1.0)
             else:
-                raise TypeError("Vector3D, Point3D must be provided")
+                raise TypeError("Vector3D, Point3D or Normal3D must be provided")
         elif len(args) == 4:
             if all(isinstance(val, (int, float, str, np.float64)) for val in args):
                 self._data = np.array(

@@ -54,6 +54,15 @@ class Sphere(Primitive):
             return True
         return False
 
+    def normal(self, point: Point3D) -> Normal3D:
+        if isinstance(point, Point3D):
+            obj_p = self._transformation.world_to_obj_space(point)
+            obj_n = Normal3D((obj_p - self._center).normalized())
+            return self._transformation.obj_to_world_space(obj_n).normalized()
+        else:
+            raise TypeError("point must be provided")
+
+
     def pdf(self, record: Intersection, wi: Vector3D) -> float:
         pass
 

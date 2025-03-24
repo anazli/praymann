@@ -3,6 +3,7 @@
 # See LICENSE file for details.
 import numpy as np
 
+from raymann.math_tools.normal3d import Normal3D
 from raymann.math_tools.vector4d import Vector4D
 from raymann.math_tools.vector3d import Vector3D
 from raymann.math_tools.point3d import Point3D
@@ -81,8 +82,8 @@ class Matrix4D:
             raise TypeError()
 
     def _mul(
-        self, other: "Vector3D | Vector4D | Point3D | Matrix4D"
-    ) -> "Vector3D | Vector4D | Point3D | Matrix4D":
+        self, other: "Vector3D | Vector4D | Point3D | Normal3D | Matrix4D"
+    ) -> "Vector3D | Vector4D | Point3D | Normal3D | Matrix4D":
         if isinstance(other, Matrix4D):
             return Matrix4D(np.matmul(self._data, other._data))
         elif isinstance(other, Vector4D):
@@ -96,6 +97,10 @@ class Matrix4D:
             v4 = Vector4D(other)
             res = np.matmul(self._data, v4.coordinates.reshape(4, 1))
             return Point3D(res[0, 0], res[1, 0], res[2, 0])
+        elif isinstance(other, Normal3D):
+            v4 = Vector4D(other)
+            res = np.matmul(self._data, v4.coordinates.reshape(4, 1))
+            return Normal3D(res[0, 0], res[1, 0], res[2, 0])
         else:
             raise TypeError("Unknown type for matrix multiplication")
 

@@ -16,8 +16,6 @@ class Intersection:
         self._surf_tangent = Vector3D()
         self._surf_bitangent = Vector3D()
         self._hit_parameter = np.inf
-        # Material of closest primitive
-        # the closest primitive
 
     @property
     def hit_point(self):
@@ -85,4 +83,3 @@ class Intersection:
             self._hit_parameter = val
         else:
             raise TypeError("must be float or int")
-
